@@ -45,8 +45,9 @@ module Acts
             name = ''
             name += self.first_name + ' ' unless self.first_name.nil?
             name += self.middle_name + ' ' unless self.middle_name.nil?
+            name += self.maiden_name + ' ' if self.middle_name.nil? and !self.maiden_name.nil?
             name += self.last_name + ' ' unless self.last_name.nil?
-            name ||= self.nickname unless self.nickname.nil?
+            name = self.nickname unless self.nickname.nil? and name != ''
             name.strip
 
         end
