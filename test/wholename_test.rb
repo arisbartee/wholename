@@ -1,17 +1,15 @@
-require 'test/unit'
-require 'rubygems'
-gem 'activerecord', '>= 2.2.2'
+require 'test_helper'
 require 'active_record'
 
-require "#{File.dirname(__FILE__)}/../init"
-ActiveRecord::Base.establish_connection(:adapter => "sqlite3", :dbfile => ":memory:")
- 
+ActiveRecord::Base.configurations={'test'=>{adapter:'sqlite3',database:':memory:'}}
+
+
 
 class Person < ActiveRecord::Base
+  attr_accessible :first_name, :last_name, :middle_name, :nickname, :maiden_name
   acts_as_wholename
 end
-
-class ActsAsWholenameTest < Test::Unit::TestCase
+class WholenameTest < ActiveSupport::TestCase
   def setup
      ActiveRecord::Schema.define(:version => 1) do
       create_table :people do |t|
@@ -60,4 +58,5 @@ class ActsAsWholenameTest < Test::Unit::TestCase
     person = Person.new({:first_name => 'Jane', :maiden_name => 'Johnson', :last_name => 'Smith'})
     assert_equal 'Jane Johnson Smith', person.whole_name
   end
+
 end

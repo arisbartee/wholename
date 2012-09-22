@@ -1,0 +1,7 @@
+= Wholename
+
+Provides convenience metods for showing a user's name"
+A person's name is made up of multiple name parts both official and affectionate, this gem provides conveniences for show a name based on the available name parts
+
+
+This project rocks and uses MIT-LICENSE.
